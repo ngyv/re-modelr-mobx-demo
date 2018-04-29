@@ -1,0 +1,32 @@
+@mixin flex-box($options: ()) {
+  $default: (type: flex, direction: row, grow: 0, shrink: 1, basis: auto, wrap: nowrap);
+  $opts: map-merge($default, $options);
+  display: map-get($opts, type);
+  flex-direction: map-get($opts, direction);
+  flex: map-get($opts, grow) map-get($opts, shrink) map-get($opts, basis);
+  flex-wrap: map-get($opts, wrap);
+}
+
+@mixin flex-content($options: ()) {
+  $default: (items: stretch, content: stretch, justify: center);
+  $opts: map-merge($default, $options);
+
+  align-items: map-get($opts, items);
+  align-content: map-get($opts, content);
+  justify-content: map-get($opts, justify);
+}
+
+%flex {
+  @include flex-box;
+  @include flex-content;
+}
+
+.app {
+  @extend %flex;
+}
+.homepage, .post-detail {
+  @include flex-box((direction: column));
+
+  width: 600px;
+  max-width: 100%;
+}

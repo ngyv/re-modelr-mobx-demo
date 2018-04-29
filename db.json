@@ -1,0 +1,15 @@
+{
+  "posts": [
+    { "id": 1, "title": "First ever blog post", "userId": 1 },
+    { "id": 2, "title": "Guess what?", "userId": 1 },
+    { "id": 3, "title": "Trip home", "userId": 2 }
+  ],
+  "comments": [
+    { "id": 1, "body": "Ye", "name": "Random person", "postId": 1 },
+    { "id": 2, "body": "Nah", "name": "Random troll", "postId": 2 }
+  ],
+  "users": [
+    { "id": 1, "name": "sitistar" },
+    { "id": 2, "name": "yunasky" }
+  ]
+}

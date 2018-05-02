@@ -1,38 +1,70 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
-import { observable } from 'mobx'
 import { getParams } from 'utils'
 
 @inject('store')
 @observer
-export function fetchEntries(modelName) {
+export function fetchEntries(modelNames) {
   return (Component: Object) => {
     class ContainerStore extends React.Component {
       static propTypes = {
         match: PropTypes.object.isRequired,
         location: PropTypes.object.isRequired,
-        model: PropTypes.string
+        modelNames:  PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.array,
+        ]),
       }
 
-      // Checks the stores and tries to match with `model` specified in route
+      constructor(props){
+      	super(props)
+
+        // stub
+        this.modelNamesArray = modelNames.toString().split(',')
+      	this.state = this.modelNamesArray.reduce((state, modelName, i) => {
+          state[`${modelName}`] = (i === 0 && props.match.params.id) ? {} : []
+          return state
+        }, {})
+      }
+
+      // Checks the stores and tries to match with `modelNames` specified in route
       async _fetchEntriesForRoute() {
-        if (!modelName) { return }
+        if (!this.modelNamesArray.length) { return }
 
-        // TODO: generalize to accept `model` as an array of string for multiple models
-        const modelId = this.props.match.params.id
-        const params = getParams(location.search)
+        const promises = await this.modelNamesArray.reduce((promises, modelName, i) => {
+          const modelId = (i === 0) ? this.props.match.params.id : undefined  // only for first `modelName`
+          const params = getParams(location.search)
+          const store = this.props.store[`${modelName}Store`]
 
-        const store = this.props.store[`${modelName}Store`]
-        let entry = null
+          if (modelId) {
+              promises.push(store.findOrShowEntry(parseInt(modelId), params))
+          } else {
+              promises.push(store.listEntries(params).then((_entries) => Promise.resolve(store.entriesArray())))
+          }
 
-        if (modelId) {
-          entry = await store.findOrShowEntry(parseInt(modelId), params)
-        } else {
-          await store.listEntries(params)
-          entry = store.entriesArray()
-        }
-        this.setState({ entry, modelName })
+          return promises
+        }, [])
+
+        this.entries = await Promise.all(promises).then((allEntries) => allEntries.reduce((all, entries, i) => {
+          const modelName = this.modelNamesArray[i]
+          all[`${modelName}`] = entries
+          return all
+        }, {}))
+
+        this._spreadEntriesForComponent(this.entries)
+      }
+
+      _spreadEntriesForComponent(entriesHash) {
+        let computedEntriesHash = {}
+        const modelNames = Object.keys(entriesHash)
+
+        modelNames.forEach((modelName) => {
+          const entries = entriesHash[`${modelName}`]
+          computedEntriesHash = Object.assign(computedEntriesHash, { get [`${modelName}`]() { return entries || [] } })
+        })
+
+        this.setState({ ...computedEntriesHash })
       }
 
       componentWillMount() {

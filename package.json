@@ -13,7 +13,7 @@
   "author": "ngyv",
   "license": "MIT",
   "dependencies": {
-    "@ngyv/re-modelr": "^0.8.12",
+    "@ngyv/re-modelr": "^0.8.13",
     "json-server": "^0.12.2",
     "mobx": "^4.2.0",
     "mobx-react": "^5.0.0",

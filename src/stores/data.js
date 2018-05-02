@@ -1,7 +1,7 @@
 import reModelr from '@ngyv/re-modelr'
 const { DomainStore, BaseModel } = reModelr
 import { types } from '@ngyv/prop-utils'
-import { decorate, observable } from 'mobx'
+import { decorate, observable, computed } from 'mobx'
 
 const MODELS = {
   Post: {
@@ -42,6 +42,7 @@ function modelClasses(models) {
 function store(modelClasses) {
   decorate(DomainStore, {
     entries: observable,
+    entriesArray: computed,
   });
   return Object.keys(modelClasses).reduce((store, modelClassName) => {
     const modelName = modelClassName.replace('Model', '');

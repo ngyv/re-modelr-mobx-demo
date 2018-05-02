@@ -22,10 +22,14 @@ export function fetchEntries(modelNames) {
 
         // stub
         this.modelNamesArray = modelNames.toString().split(',')
-      	this.state = this.modelNamesArray.reduce((state, modelName, i) => {
+        this.state = this.modelNamesArray.reduce((state, modelName, i) => {
           state[`${modelName}`] = (i === 0 && props.match.params.id) ? {} : []
           return state
         }, {})
+      }
+
+      componentWillMount() {
+        this._fetchEntriesForRoute()
       }
 
       // Checks the stores and tries to match with `modelNames` specified in route
@@ -40,7 +44,7 @@ export function fetchEntries(modelNames) {
           if (modelId) {
               promises.push(store.findOrShowEntry(parseInt(modelId), params))
           } else {
-              promises.push(store.listEntries(params).then((_entries) => Promise.resolve(store.entriesArray())))
+              promises.push(store.listEntries(params).then((_entries) => Promise.resolve(store.entriesArray)))
           }
 
           return promises
@@ -60,15 +64,10 @@ export function fetchEntries(modelNames) {
         const modelNames = Object.keys(entriesHash)
 
         modelNames.forEach((modelName) => {
-          const entries = entriesHash[`${modelName}`]
-          computedEntriesHash = Object.assign(computedEntriesHash, { get [`${modelName}`]() { return entries || [] } })
+          computedEntriesHash[`${modelName}`] = (entriesHash[`${modelName}`] || [])
         })
 
         this.setState({ ...computedEntriesHash })
-      }
-
-      componentWillMount() {
-        this._fetchEntriesForRoute()
       }
 
       render () {

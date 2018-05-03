@@ -15,4 +15,5 @@ I prefer to create a separate files for each model and store and extend from `ba
 This is an alternative way to using `re-modelr` the quick and dirty(-ish) way.
 
 [Decorating models attributes as observables](https://github.com/ngyv/re-modelr-mobx-demo/blob/master/src/stores/models.js)
-[Decorating store entries as observables and entriesArray as computed](https://github.com/ngyv/re-modelr-mobx-demo/blob/master/src/stores/models.js)
+
+[Decorating store entries as observables and entriesArray as computed](https://github.com/ngyv/re-modelr-mobx-demo/blob/master/src/stores/data.js)

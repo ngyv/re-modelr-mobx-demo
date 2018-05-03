@@ -7,7 +7,11 @@ import { Link } from 'react-router-dom'
 @observer
 export default class Home extends Component {
   static propTypes = {
-    Post: PropTypes.array.isRequired,
+    store: PropTypes.object.isRequired,
+  }
+
+  @computed get posts() {
+    return this.props.store.PostStore.entriesArray
   }
 
   render() {
@@ -15,7 +19,7 @@ export default class Home extends Component {
       <div className="homepage">
         <h2>Posts</h2>
         <div>
-          {this.props.Post.map((post, i) => {
+          {this.posts.map((post, i) => {
             return (
               <div key={(new Date()).valueOf() + i}>
                 <Link to={`/demo/posts/${post.id}`}>{post.title}</Link>

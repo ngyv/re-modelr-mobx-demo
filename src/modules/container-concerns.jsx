@@ -42,9 +42,9 @@ export function fetchEntries(modelNames) {
           const store = this.props.store[`${modelName}Store`]
 
           if (modelId) {
-              promises.push(store.findOrShowEntry(parseInt(modelId), params))
+            promises.push(store.findOrShowEntry(parseInt(modelId), params))
           } else {
-              promises.push(store.listEntries(params).then((_entries) => Promise.resolve(store.entriesArray)))
+            promises.push(store.listEntries(params).then((_entries) => Promise.resolve(store.entriesArray)))
           }
 
           return promises

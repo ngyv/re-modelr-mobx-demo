@@ -12,8 +12,8 @@
 
 I prefer to create a separate files for each model and store and extend from `base-model` and `domain-store` respectively.
 
-This is an alternative way to using `re-modelr` the quick and dirty(-ish) way.
-
 [Decorating models attributes as observables](https://github.com/ngyv/re-modelr-mobx-demo/blob/master/src/stores/models.js)
 
 [Decorating store entries as observables and entriesArray as computed](https://github.com/ngyv/re-modelr-mobx-demo/blob/master/src/stores/data.js)
+
+This is an [alternative way](https://github.com/ngyv/re-modelr-mobx-demo/commit/e8f5d165e62dc2b5be4c65f3fc418d9ab0b82d44#diff-9df32e3f61381a18fcee2401497fe146) to using `re-modelr` the quick and dirty(-ish) way.

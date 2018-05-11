@@ -11,7 +11,7 @@ function store(modelClasses) {
 
   return Object.keys(modelClasses).reduce((store, modelClassName) => {
     const modelName = modelClassName.replace('Model', '');
-    store[`${modelName}Store`] = new DomainStore(modelClasses[modelClassName], { basePath: 'http://localhost:3001', modelName: modelName.toLowerCase() });
+    store[`${modelName}Store`] = new DomainStore(modelClasses[modelClassName], { basePath: 'https://my-json-server.typicode.com/ngyv/re-modelr-mobx-demo', modelName: modelName.toLowerCase() });
     return store;
   }, {});
 }

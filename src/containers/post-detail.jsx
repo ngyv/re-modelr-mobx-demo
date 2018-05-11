@@ -17,7 +17,7 @@ export default class PostDetail extends Component {
   render() {
     return (
       <div className="post-detail">
-        <Link to="/demo">Back</Link>
+        <Link to="/re-modelr-mobx-demo">Back</Link>
         <h2>Post detail</h2>
         <Post post={this.post}/>
       </div>

@@ -10,8 +10,8 @@ export default class App extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path='/demo' component={fetchEntries(['Post', 'User'])(Home)}/>
-        <Route exact path='/demo/posts/:id' component={fetchEntries('Post')(PostDetail)}/>
+        <Route exact path='/re-modelr-mobx-demo' component={fetchEntries(['Post', 'User'])(Home)}/>
+        <Route exact path='/re-modelr-mobx-demo/posts/:id' component={fetchEntries('Post')(PostDetail)}/>
       </Switch>
     )
   }

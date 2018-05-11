@@ -4,7 +4,7 @@
 2. `npm install`
 3. `npm run server`
 4. `npm start`
-5. Go to [localhost:8888/demo](http://localhost:8888/demo)
+5. Go to [localhost:8888/re-modelr-mobx-demo](http://localhost:8888/re-modelr-mobx-demo)
 
 #### Using [re-modelr](https://github.com/ngyv/re-modelr)
 

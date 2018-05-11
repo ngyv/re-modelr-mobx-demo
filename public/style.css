@@ -1,0 +1,18 @@
+.app {
+  display: flex;
+  flex-direction: row;
+  flex: 0 1 auto;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  align-content: stretch;
+  justify-content: center;
+}
+
+.homepage, .post-detail {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  flex-wrap: nowrap;
+  width: 600px;
+  max-width: 100%;
+}

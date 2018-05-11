@@ -26,6 +26,8 @@ module.exports = {
       Components: path.resolve(__dirname, 'src/components/'),
       Containers: path.resolve(__dirname, 'src/containers/'),
       utils: path.resolve(__dirname, 'src/modules/utils.js'),
+      Modules: path.resolve(__dirname, 'src/modules/'),
+      Stores: path.resolve(__dirname, 'src/stores/'),
       Styles: path.resolve(__dirname, 'styles/'),
       Images: path.resolve(__dirname, 'public/images/')
     }
@@ -38,14 +40,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        screw_ie8: true,
-        drop_console: true,
-        drop_debugger: true
       }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),

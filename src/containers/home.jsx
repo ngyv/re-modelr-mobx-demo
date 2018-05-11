@@ -22,7 +22,7 @@ export default class Home extends Component {
           {this.posts.map((post, i) => {
             return (
               <div key={(new Date()).valueOf() + i}>
-                <Link to={`/demo/posts/${post.id}`}>{post.title}</Link>
+                <Link to={`/re-modelr-mobx-demo/posts/${post.id}`}>{post.title}</Link>
               </div>
             )
           })}

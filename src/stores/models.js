@@ -1,5 +1,4 @@
-import reModelr from '@ngyv/re-modelr'
-const { BaseModel } = reModelr
+import { BaseModel } from '@ngyv/re-modelr'
 import { types } from '@ngyv/prop-utils'
 import { decorate, observable } from 'mobx'
 

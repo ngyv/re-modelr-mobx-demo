@@ -1,8 +1,15 @@
 import Models from 'Stores/models'
-import reModelr from '@ngyv/re-modelr'
-const { DomainStore } = reModelr
+import { DomainStore } from '@ngyv/re-modelr'
 import { decorate, observable, computed } from 'mobx'
 
+class DStore extends DomainStore {
+  _fetchAll(params) {
+    return this._api.get(params, {}, 'include')
+  }
+  _fetchOne(params) {
+    return this._api.get(params, {}, 'include')
+  }
+}
 function store(modelClasses) {
   decorate(DomainStore, {
     entries: observable,
@@ -11,7 +18,7 @@ function store(modelClasses) {
 
   return Object.keys(modelClasses).reduce((store, modelClassName) => {
     const modelName = modelClassName.replace('Model', '');
-    store[`${modelName}Store`] = new DomainStore(modelClasses[modelClassName], { basePath: 'https://my-json-server.typicode.com/ngyv/re-modelr-mobx-demo', modelName: modelName.toLowerCase() });
+    store[`${modelName}Store`] = new DStore(modelClasses[modelClassName], { basePath: 'https://my-json-server.typicode.com/ngyv/re-modelr-mobx-demo', modelName: modelName.toLowerCase() });
     return store;
   }, {});
 }

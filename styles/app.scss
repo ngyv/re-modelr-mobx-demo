@@ -1,3 +1,11 @@
+$c-bg: #89cccc;
+$c-text: #003e3e;
+$c-link: #124848;
+
+@mixin stretch {
+  width: 100%;
+  height: 100%;
+}
 @mixin flex-box($options: ()) {
   $default: (type: flex, direction: row, grow: 0, shrink: 1, basis: auto, wrap: nowrap);
   $opts: map-merge($default, $options);
@@ -21,12 +29,33 @@
   @include flex-content;
 }
 
+html, body, .app {
+  @include stretch;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica-light, Arial, Sans-Serif;
+}
+
 .app {
   @extend %flex;
+
+  background-color: $c-bg;
+  color: $c-text;
+  padding: 15px;
 }
 .homepage, .post-detail {
   @include flex-box((direction: column));
 
   width: 600px;
   max-width: 100%;
+}
+a {
+  color: $c-link;
+  text-decoration: none;
+  &:hover {
+    color: #d0ffff;
+  }
 }

@@ -42,3 +42,17 @@ a {
 a:hover {
   color: #d0ffff;
 }
+
+.notification {
+  height: 18px;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  color: #eee;
+  border: 1px solid #eee;
+  text-align: center;
+}
+
+.notification:empty {
+  border-color: transparent;
+}

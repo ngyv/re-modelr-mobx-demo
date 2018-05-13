@@ -3,7 +3,10 @@ import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
 import { getParams } from 'utils'
 
-@inject('store')
+@inject(allStores => ({
+  store: allStores.store,
+  notification: allStores.notification
+}))
 @observer
 export function fetchEntries(modelNames) {
   return (Component: Object) => {
@@ -11,7 +14,7 @@ export function fetchEntries(modelNames) {
       static propTypes = {
         match: PropTypes.object.isRequired,
         location: PropTypes.object.isRequired,
-        modelNames:  PropTypes.oneOfType([
+        modelNames: PropTypes.oneOfType([
           PropTypes.string,
           PropTypes.array,
         ]),
@@ -42,8 +45,12 @@ export function fetchEntries(modelNames) {
           const store = this.props.store[`${modelName}Store`]
 
           if (modelId) {
+            this.props.notification.push(`Fetching ${modelName} id: ${modelId}`)
+
             promises.push(store.findOrShowEntry(parseInt(modelId), params))
           } else {
+            this.props.notification.push(`Fetching ${modelName}`)
+
             promises.push(store.listEntries(params).then((_entries) => Promise.resolve(store.entriesArray)))
           }
 

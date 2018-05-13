@@ -1,6 +1,7 @@
 $c-bg: #89cccc;
 $c-text: #003e3e;
 $c-link: #124848;
+$c-notification: #eee;
 
 @mixin stretch {
   width: 100%;
@@ -57,5 +58,19 @@ a {
   text-decoration: none;
   &:hover {
     color: #d0ffff;
+  }
+}
+
+.notification {
+  height: 18px;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  color: $c-notification;
+  border: 1px solid $c-notification;
+  text-align: center;
+
+  &:empty {
+    border-color: transparent;
   }
 }

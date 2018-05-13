@@ -4,11 +4,12 @@ import { BrowserRouter } from 'react-router-dom'
 import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'mobx-react'
 import DataStore from 'Stores/data'
+import NotificationStore from 'Stores/notification'
 import AppRoute from './app-route'
 
 ReactDOM.render(
   <BrowserRouter>
-    <Provider store={DataStore}>
+    <Provider store={DataStore} notification={NotificationStore}>
       <AppContainer>
         <AppRoute/>
       </AppContainer>

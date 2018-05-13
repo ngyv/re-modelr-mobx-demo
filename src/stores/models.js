@@ -1,12 +1,11 @@
-import { BaseModel } from '@ngyv/re-modelr'
-import { types } from '@ngyv/prop-utils'
+import { BaseModel, type } from '@ngyv/re-modelr'
 import { decorate, observable } from 'mobx'
 
 class UserModel extends BaseModel {
   _attributes() {
     return {
-      id: types.number,
-      name: types.string,
+      id: type('number'),
+      name: type('string'),
     }
   }
 }
@@ -17,10 +16,10 @@ decorate(UserModel, {
 class CommentModel extends BaseModel {
   _attributes() {
     return {
-      id: types.number,
-      body: types.string,
-      name: types.string,
-      postId: types.number,
+      id: type('number'),
+      body: type('string'),
+      name: type('string'),
+      postId: type('number'),
     }
   }
 }
@@ -33,9 +32,9 @@ decorate(CommentModel, {
 class PostModel extends BaseModel {
   _attributes() {
     return {
-      id: types.number,
-      title: types.string,
-      userId: types.number,
+      id: type('number'),
+      title: type('string'),
+      userId: type('number'),
     }
   }
 }
